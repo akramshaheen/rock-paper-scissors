@@ -7,67 +7,105 @@
   </head>
   <body>
     <script>
-      // FUNCTION getComputerChoice
-      function getComputerChoice() {
-        // GENERATE random number between 0 and 1
-        let randomNum = Math.random();
-        // IF number < 0.33 -> RETURN "Rock"
-        if (randomNum < 0.33) {
-          return "Rock";
-          // ELSE IF number < 0.66 -> RETURN "Paper"
-        } else if (randomNum < 0.66) {
-          return "Paper";
-          // ELSE -> RETURN "Scissors"
-        } else {
-          return "Scissors";
-        }
-      }
-
-      // FUNCTION getHumanChoice
-      function getHumanChoice() {
-        // GET user input and RETURN it
-        return prompt("Choose either 'Rock', 'Paper', or 'Scissors'");
-      }
-
-      function capitalizeFirstLetter(str) {
-        if (!str) return "";
-        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-      }
-
       let humanScore = 0;
       let computerScore = 0;
 
-      // FUNCTION playRound : humanChoice, computerChoice
-      function playRound(humanChoice, computerChoice) {
-        // IF statements that compare human and computer outputs
-        if (humanChoice === computerChoice) {
-          return "It's a draw!";
-        } else if (
-          (humanChoice === "Rock" && computerChoice === "Scissors") ||
-          (humanChoice === "Paper" && computerChoice === "Rock") ||
-          (humanChoice === "Scissors" && computerChoice === "Paper")
-        ) {
-          humanScore++;
-          return "You won!";
-        } else {
-          computerScore++;
-          return "You lost!";
+      function playGame() {
+        // FUNCTION getComputerChoice
+        function getComputerChoice() {
+          // GENERATE random number between 0 and 1
+          let randomNum = Math.random();
+          // IF number < 0.33 -> RETURN "Rock"
+          if (randomNum < 0.33) {
+            return "Rock";
+            // ELSE IF number < 0.66 -> RETURN "Paper"
+          } else if (randomNum < 0.66) {
+            return "Paper";
+            // ELSE -> RETURN "Scissors"
+          } else {
+            return "Scissors";
+          }
         }
+
+        // FUNCTION getHumanChoice
+        function getHumanChoice() {
+          // GET user input and RETURN it
+          return prompt("Choose either 'Rock', 'Paper', or 'Scissors'");
+        }
+
+        function capitalizeFirstLetter(str) {
+          if (!str) return "";
+          return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+
+        let humanChoice = capitalizeFirstLetter(getHumanChoice());
+        let computerChoice = getComputerChoice();
+
+        // FUNCTION playRound : humanChoice, computerChoice
+        function playRound(humanChoice, computerChoice) {
+          // IF statements that compare human and computer outputs
+          if (humanChoice === computerChoice) {
+            alert(
+              "You chose " +
+                humanChoice +
+                ", and the computer chose " +
+                computerChoice +
+                ". So, it's a draw!"
+            );
+          } else if (
+            (humanChoice === "Rock" && computerChoice === "Scissors") ||
+            (humanChoice === "Paper" && computerChoice === "Rock") ||
+            (humanChoice === "Scissors" && computerChoice === "Paper")
+          ) {
+            humanScore++;
+            alert(
+              "You chose " +
+                humanChoice +
+                ", and the computer chose " +
+                computerChoice +
+                ". So, you won this round!"
+            );
+          } else {
+            computerScore++;
+            alert(
+              "You chose " +
+                humanChoice +
+                ", and the computer chose " +
+                computerChoice +
+                ". So, you lost this round!"
+            );
+          }
+        }
+
+        playRound(humanChoice, computerChoice);
+        alert(
+          "The current score is: Human " +
+            humanScore +
+            "/ Computer " +
+            computerScore
+        );
       }
-      let humanChoice = capitalizeFirstLetter(getHumanChoice());
-      let computerChoice = getComputerChoice();
 
-      let result = playRound(humanChoice, computerChoice);
+      playGame();
+      playGame();
+      playGame();
+      playGame();
+      playGame();
 
-      console.log("You chose:", humanChoice);
-      console.log("The computer chose:", computerChoice);
-      console.log(result);
-      console.log(
-        "The score is: Human",
-        humanScore,
-        "/ Computer",
-        computerScore
+      alert(
+        "The final score is: Human " +
+          humanScore +
+          "/ Computer " +
+          computerScore
       );
+
+      if (humanScore > computerScore) {
+        alert("You won the game. YEEEAAAH!");
+      } else if (humanScore === computerScore) {
+        alert("It's a draw -_-");
+      } else {
+        alert("You lost the game. BOOOOOO!");
+      }
     </script>
   </body>
 </html>
